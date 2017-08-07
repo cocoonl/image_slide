@@ -1,0 +1,88 @@
+<head>
+    <link rel="stylesheet" href="/image_slide.css">
+    <script type="text/javascript" src="/image_slide.js" ></script>
+</head>
+
+
+<script>
+    
+    /*global $:true*/
+    
+    
+    var slideIndex = 1;
+
+    function plusDivs(n) {
+      showDivs(slideIndex += n,n);
+    }
+    
+    function showDivs(n,dir) {
+      var i;
+      var x = document.getElementsByClassName("image_slides");
+      if (n > x.length) {slideIndex = 1}
+      
+      if (n < 1) {slideIndex = x.length};
+      
+      if(dir == 1){
+          for (i = 0; i < x.length; i++) {
+             $(".image_slides:eq("+i+")").hide();  
+          }
+          $(".image_slides").eq(slideIndex-1).show();
+          
+      }
+      else{
+          for (i = 0; i < x.length; i++) {
+             $(".image_slides:eq("+i+")").hide();  
+          }
+          $(".image_slides").eq(slideIndex-1).show();
+          
+      }
+      
+    }
+    
+    
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("image_slides");
+        for (i = 0; i < x.length; i++) {
+          //x[i].style.display = "none";
+          $(".image_slides:eq("+i+")").hide();
+          
+        }
+        slideIndex++;
+        if (slideIndex > x.length) {slideIndex = 1}
+        
+        $(".image_slides").eq(slideIndex-1).show();
+        
+        setTimeout(carousel, 10000); // Change image every 10 seconds
+    }
+    
+    $(document).ready(function(){    
+       
+        setTimeout(showDivs(1,1), 5000);
+        
+        setTimeout(carousel, 5000);
+        
+    });
+    
+</script>
+
+
+<div id="main_banner">
+    
+    <div class="image_slides">
+        <img class="banner_slides" src=""  alt="img_1">
+        
+    
+    <div class="image_slides">
+        <img class="banner_slides" src=""  alt="img_2">
+        
+    </div>
+    
+    <div class="image_slides">
+        <img class="banner_slides" src=""  alt="img_3">
+    </div>
+    
+    <a class="image_button" style="position:absolute; top: 200px; left:5%;" onclick="plusDivs(-1)">❮</a>
+    <a class="image_button" style="position:absolute; top: 200px; right:5%" onclick="plusDivs(1)">❯</a>
+
+</div>
